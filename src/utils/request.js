@@ -3,44 +3,39 @@ import { MessageBox, Message } from 'element-ui'
 import store from '@/store'
 import { getToken } from '@/utils/auth'
 
-// create an axios instance
+// 创建一个 axios 实例
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API, // url = base url + request url
-  // withCredentials: true, // send cookies when cross-domain requests
-  timeout: 5000 // request timeout
+  // withCredentials: true, // 在跨域请求时发送 Cookie
+  timeout: 5000 // 请求超时时间
 })
 
-// request interceptor
+// 请求拦截器
 service.interceptors.request.use(
   config => {
-    // do something before request is sent
+    // 在发送请求之前执行某些操作
 
     if (store.getters.token) {
-      // let each request carry token
-      // ['X-Token'] is a custom headers key
-      // please modify it according to the actual situation
+      // 让每个请求携带token ['X-Token']是一个自定义的头键，请根据实际情况进行修改
       config.headers['Authorization'] = 'Bearer ' + getToken()
     }
     return config
   },
   error => {
-    // do something with request error
+    // 对请求错误执行某些操作
     console.log(error) // for debug
     return Promise.reject(error)
   }
 )
 
-// response interceptor
+// 响应拦截器
 service.interceptors.response.use(
   /**
-   * If you want to get http information such as headers or status
-   * Please return  response => response
+   * 如果要获取 http 信息，例如标头或状态 请返回 response => response
    */
 
   /**
-   * Determine the request status by custom code
-   * Here is just an example
-   * You can also judge the status by HTTP Status Code
+   * 通过自定义代码确定请求状态 这里只是一个示例 您还可以通过 HTTP 状态码来判断状态
    */
   response => {
     const res = response.data
