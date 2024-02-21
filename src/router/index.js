@@ -11,6 +11,7 @@ import componentsRouter from './modules/components'
 import chartsRouter from './modules/charts'
 import tableRouter from './modules/table'
 import nestedRouter from './modules/nested'
+import sysRouter from '@/router/modules/sys'
 
 /**
  * 注意：子菜单仅在路由 children.length >= 1 时显示
@@ -184,6 +185,7 @@ export const asyncRoutes = [
   chartsRouter,
   nestedRouter,
   tableRouter,
+  sysRouter,
 
   {
     path: '/example',
