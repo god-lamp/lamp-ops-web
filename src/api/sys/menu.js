@@ -1,18 +1,18 @@
 import request from '@/utils/request'
 
-export function fetchAccounts(query) {
+export function fetchMenus(query) {
   return request({
     baseURL: 'http://localhost:19999/api/devops',
-    url: '/account',
+    url: '/menu',
     method: 'get',
     params: query
   })
 }
 
-export function createAccount(data) {
+export function createMenu(data) {
   return request({
     baseURL: 'http://localhost:19999/api/devops',
-    url: '/account',
+    url: '/menu',
     method: 'post',
     data
   })
